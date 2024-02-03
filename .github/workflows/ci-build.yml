@@ -36,5 +36,4 @@ jobs:
         with:
           name: artifacts
           path: |
-            target/distributions/*.zip
-            target/distributions/*.tar.gz
+            target/**/*.*
