@@ -29,7 +29,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build native image using Graal
-        run: ./mvnw -B -ntp --file pom.xml -Pnative native:compile
+        run: ./mvnw -B -DskipTests -ntp --file pom.xml -Pnative native:compile
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v3
