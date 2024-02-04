@@ -22,6 +22,9 @@
         <assembly-plugin.version>3.6.0</assembly-plugin.version>
         <os-plugin.version>1.7.1</os-plugin.version>
         <jreleaser-plugin.version>1.10.0</jreleaser-plugin.version>
+
+        <executable-suffix/>
+        <artifactsDir>target/distributions</artifactsDir>
     </properties>
 
     <distributionManagement>
