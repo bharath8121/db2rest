@@ -16,6 +16,12 @@
     <properties>
         <java.version>21</java.version>
         <spring-restdocs.version>3.0.1</spring-restdocs.version>
+
+
+        <!-- Maven plugins -->
+        <assembly-plugin.version>3.6.0</assembly-plugin.version>
+        <os-plugin.version>1.7.1</os-plugin.version>
+        <jreleaser-plugin.version>1.10.0</jreleaser-plugin.version>
     </properties>
 
     <distributionManagement>
@@ -246,6 +252,13 @@
     </dependencies>
 
     <build>
+        <extensions>
+            <extension>
+                <groupId>kr.motd.maven</groupId>
+                <artifactId>os-maven-plugin</artifactId>
+                <version>${os-plugin.version}</version>
+            </extension>
+        </extensions>
         <finalName>db2rest</finalName>
         <plugins>
             <plugin>
@@ -284,6 +297,28 @@
                         </exclude>
                     </excludes>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>${assembly-plugin.version}</version>
+                <configuration>
+                    <attach>false</attach>
+                    <appendAssemblyId>false</appendAssemblyId>
+                    <finalName>${project.artifactId}-${project.version}-${os.detected.classifier}</finalName>
+                    <outputDirectory>${project.build.directory}/distributions</outputDirectory>
+                    <workDirectory>${project.build.directory}/assembly/work</workDirectory>
+                    <skipAssembly>true</skipAssembly>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-distribution</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
