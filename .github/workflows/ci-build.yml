@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - 'feature/**'
+
+env:
+  USE_NATIVE_IMAGE_JAVA_PLATFORM_MODULE_SYSTEM: false
+
 jobs:
   build:
     name: 'Maven Build on ${{ matrix.os }}'
