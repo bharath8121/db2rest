@@ -19,12 +19,12 @@
 
 
         <!-- Maven plugins -->
-        <assembly-plugin.version>3.6.0</assembly-plugin.version>
-        <os-plugin.version>1.7.1</os-plugin.version>
-        <jreleaser-plugin.version>1.10.0</jreleaser-plugin.version>
+<!--        <assembly-plugin.version>3.6.0</assembly-plugin.version>-->
+<!--        <os-plugin.version>1.7.1</os-plugin.version>-->
+<!--        <jreleaser-plugin.version>1.10.0</jreleaser-plugin.version>-->
 
-        <executable-suffix/>
-        <artifactsDir>target/distributions</artifactsDir>
+<!--        <executable-suffix/>-->
+<!--        <artifactsDir>target/distributions</artifactsDir>-->
     </properties>
 
     <distributionManagement>
@@ -255,13 +255,13 @@
     </dependencies>
 
     <build>
-        <extensions>
-            <extension>
-                <groupId>kr.motd.maven</groupId>
-                <artifactId>os-maven-plugin</artifactId>
-                <version>${os-plugin.version}</version>
-            </extension>
-        </extensions>
+<!--        <extensions>-->
+<!--            <extension>-->
+<!--                <groupId>kr.motd.maven</groupId>-->
+<!--                <artifactId>os-maven-plugin</artifactId>-->
+<!--                <version>${os-plugin.version}</version>-->
+<!--            </extension>-->
+<!--        </extensions>-->
         <finalName>db2rest</finalName>
         <plugins>
             <plugin>
@@ -302,68 +302,80 @@
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <version>${assembly-plugin.version}</version>
-                <configuration>
-                    <attach>false</attach>
-                    <appendAssemblyId>false</appendAssemblyId>
-                    <finalName>${project.artifactId}-${project.version}-${os.detected.classifier}</finalName>
-                    <outputDirectory>${project.build.directory}/distributions</outputDirectory>
-                    <workDirectory>${project.build.directory}/assembly/work</workDirectory>
-                    <skipAssembly>true</skipAssembly>
-                </configuration>
+                <groupId>org.springframework.experimental</groupId>
+                <artifactId>spring-graalvm-native</artifactId>
+                <version>0.10.5</version>
                 <executions>
                     <execution>
-                        <id>make-distribution</id>
-                        <phase>package</phase>
                         <goals>
-                            <goal>single</goal>
+                            <goal>build-image</goal>
                         </goals>
                     </execution>
                 </executions>
             </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-assembly-plugin</artifactId>-->
+<!--                <version>${assembly-plugin.version}</version>-->
+<!--                <configuration>-->
+<!--                    <attach>false</attach>-->
+<!--                    <appendAssemblyId>false</appendAssemblyId>-->
+<!--                    <finalName>${project.artifactId}-${project.version}-${os.detected.classifier}</finalName>-->
+<!--                    <outputDirectory>${project.build.directory}/distributions</outputDirectory>-->
+<!--                    <workDirectory>${project.build.directory}/assembly/work</workDirectory>-->
+<!--                    <skipAssembly>true</skipAssembly>-->
+<!--                </configuration>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>make-distribution</id>-->
+<!--                        <phase>package</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>single</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
         </plugins>
     </build>
 
 
-    <profiles>
-        <profile>
-            <id>dist</id>
-            <activation>
-                <property>
-                    <name>dist</name>
-                </property>
-            </activation>
-            <properties>
-                <skipTests>true</skipTests>
-            </properties>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-assembly-plugin</artifactId>
-                        <configuration combine.self="append">
-                            <skipAssembly>false</skipAssembly>
-                            <descriptors>
-                                <descriptor>src/main/assembly/assembly.xml</descriptor>
-                            </descriptors>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>dist-windows</id>
-            <activation>
-                <os>
-                    <family>windows</family>
-                </os>
-            </activation>
-            <properties>
-                <executable-suffix>.exe</executable-suffix>
-            </properties>
-        </profile>
-    </profiles>
+<!--    <profiles>-->
+<!--        <profile>-->
+<!--            <id>dist</id>-->
+<!--            <activation>-->
+<!--                <property>-->
+<!--                    <name>dist</name>-->
+<!--                </property>-->
+<!--            </activation>-->
+<!--            <properties>-->
+<!--                <skipTests>true</skipTests>-->
+<!--            </properties>-->
+<!--            <build>-->
+<!--                <plugins>-->
+<!--                    <plugin>-->
+<!--                        <groupId>org.apache.maven.plugins</groupId>-->
+<!--                        <artifactId>maven-assembly-plugin</artifactId>-->
+<!--                        <configuration combine.self="append">-->
+<!--                            <skipAssembly>false</skipAssembly>-->
+<!--                            <descriptors>-->
+<!--                                <descriptor>src/main/assembly/assembly.xml</descriptor>-->
+<!--                            </descriptors>-->
+<!--                        </configuration>-->
+<!--                    </plugin>-->
+<!--                </plugins>-->
+<!--            </build>-->
+<!--        </profile>-->
+<!--        <profile>-->
+<!--            <id>dist-windows</id>-->
+<!--            <activation>-->
+<!--                <os>-->
+<!--                    <family>windows</family>-->
+<!--                </os>-->
+<!--            </activation>-->
+<!--            <properties>-->
+<!--                <executable-suffix>.exe</executable-suffix>-->
+<!--            </properties>-->
+<!--        </profile>-->
+<!--    </profiles>-->
 
 </project>

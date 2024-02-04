@@ -23,11 +23,15 @@ jobs:
           distribution: 'graalvm'
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build native image using Graal
-        run: ./mvnw -B -DskipTests -ntp --file pom.xml -Pnative native:compile
+      - name: Package maven image using Graal
+        run: ./mvnw -B --file pom.xml package
 
-      - name: Create distribution
-        run: ./mvnw -B -ntp --file pom.xml -Pdist package -DskipTests
+#      - name: Build native image using Graal
+#        run: ./mvnw -B -DskipTests -ntp --file pom.xml -Pnative native:compile
+
+#      - name: Create distribution
+#        run: ./mvnw -B -ntp --file pom.xml -Pdist package -DskipTests
+
 
 
       - name: Upload build artifact
@@ -35,4 +39,4 @@ jobs:
         with:
           name: artifacts-${{ matrix.os }}
           path: |
-            target/distributions/*.*
+            target/*.*
