@@ -28,8 +28,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Package maven image using Graal
-#        run: ./mvnw -B -ntp -DskipTests --file pom.xml -Pnative native:compile
-        run: ./mvnw -B -PnativeBuild --file pom.xml package
+        run: ./mvnw -B -ntp -DskipTests --file pom.xml -Pnative native:compile
 
 #      - name: Build native image using Graal
 #        run: ./mvnw -B -DskipTests -ntp --file pom.xml -Pnative native:compile
