@@ -10,7 +10,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        os: [ macOS-latest, macos-14 ]
+        os: [ macos-14 ]
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout repository
@@ -24,7 +24,8 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Package maven image using Graal
-        run: ./mvnw -B --file pom.xml package
+        run: ./mvnw -B --file pom.xml -Pnative native:compile
+#        run: ./mvnw -B --file pom.xml package
 
 #      - name: Build native image using Graal
 #        run: ./mvnw -B -DskipTests -ntp --file pom.xml -Pnative native:compile
