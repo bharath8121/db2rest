@@ -256,6 +256,11 @@
             <artifactId>native-maven-plugin</artifactId>
             <version>0.9.23</version>
         </dependency>
+        <dependency>
+            <groupId>org.graalvm.buildtools.native</groupId>
+            <artifactId>org.graalvm.buildtools.native.gradle.plugin</artifactId>
+            <version>0.9.23</version>
+        </dependency>
 
     </dependencies>
 
